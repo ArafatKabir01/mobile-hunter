@@ -11,16 +11,17 @@ const phoneItems = phones => {
     const phoneCard = document.getElementById('phone-card-center');
      phones.forEach(phone => {
         const newDiv = document.createElement('div');
-        newDiv.classList.add('col')
+        newDiv.classList.add('mb-4') 
         console.log(phone);
         newDiv.innerHTML =`
-        <div class="card mb-3" id="phoneCard" style="width: 18rem;">
-        <img src="${phone.image}" class="card-img-top" alt="...">
+        <div class="card h-100 mb-3" id="phoneCard" style="width: 18rem;">
+        <img style="width:80% ; margin-left:10%; padding:5%" src="${phone.image}" class="card-img-top " alt="...">
         <div class="card-body ">
-          <h5 class="card-title text-black">Name : ${phone.phone_name}</h5>
-          <h5 class="card-title text-black">Brand : ${phone.brand}</h5>
-          <p class="card-text text-black">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Details</a>
+          <h5 class="card-title text-black ">Name : ${phone.phone_name}</h5>
+          <h5 class="card-title text-black ">Brand : ${phone.brand}</h5>
+        </div>
+        <div id="btn-detail" class="card-footer">
+        <a href="#" class="btn btn-primary">Details</a>
         </div>
         </div>
         `;
@@ -28,3 +29,4 @@ const phoneItems = phones => {
     });
 
 }
+searchPhone();

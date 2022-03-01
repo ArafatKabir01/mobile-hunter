@@ -95,6 +95,8 @@ const phoneItems = phones => {
 };
 // phone details option
 const detailsBtn = phoneId => { 
+  const errorMsg = document.getElementById('error-msg');
+  errorMsg.innerHTML='';
   loadingSpinner('block');  
     const detailsUrl = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(detailsUrl)

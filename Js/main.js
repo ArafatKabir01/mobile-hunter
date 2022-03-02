@@ -1,3 +1,4 @@
+
 const searchPhone = () => {
   loadingSpinner('block');
     const userInput = document.getElementById('src-input-field').value;
@@ -37,12 +38,12 @@ const searchPhone = () => {
 
 // See more button funcation
 const moreItem = () =>{
-  const userInput = document.getElementById('src-input-field').value;
-  const inputLowerCase = userInput.toLowerCase();
-    const PhoneApiUrl = `https://openapi.programming-hero.com/api/phones?search=${inputLowerCase}`
+  const usersInput = document.getElementById('src-input-field').value;
+  const inputLowercase = usersInput.toLowerCase();
+    const PhoneApiUrl = `https://openapi.programming-hero.com/api/phones?search=${inputLowercase}`
     fetch(PhoneApiUrl)
     .then(res => res.json())
-    .then(data => phoneItems(data.data.slice(20,)))
+    .then(data => console.log(data.data))
     const seeMoreDiv = document.getElementById('SeeMore');
     seeMoreDiv.classList.add('d-none')
 };
@@ -107,21 +108,6 @@ const detailsBtn = phoneId => {
 const detailsfunction = phonesId => {
   console.log(phonesId.others)
     const detailsDiv = document.getElementById('details-section')
-    if(phonesId.others == undefined){
-      loadingSpinner('none');
-      const errorMsg = document.getElementById('error-msg');
-      errorMsg.innerHTML=`
-      <div class="toast align-items-center border border-danger d-block" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body">
-        <p class = 'text-danger pt-2'>No Data Found...Try next Time</p>
-       </div>
-        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    </div>
-      `;
-    }
-    else{
       detailsDiv.innerHTML=`
       <div class="card mb-3" style="width: 740px;">
       <div class="row g-0">
@@ -138,12 +124,12 @@ const detailsfunction = phonesId => {
             <p class='text-black'><span class="fw-bold">Storage : </span>${phonesId.mainFeatures.storage}</p>
             <p class='text-black'><span class="fw-bold">sensors : </span>${phonesId.mainFeatures.sensors[0]},
             <span>${phonesId.mainFeatures.sensors[1]},</span><span>${phonesId.mainFeatures.sensors[2]},</span><span>${phonesId.mainFeatures.sensors[3]},</span><span>${phonesId.mainFeatures.sensors[4]}</span></p>
-            <p class='text-black'><span class="fw-bold">Bluetooth : </span>${phonesId.others.Bluetooth}?</p>
-            <p class='text-black'><span class="fw-bold">GPS : </span>${phonesId.others.GPS}</p>
-            <p class='text-black'><span class="fw-bold">NFC : </span>${phonesId.others.NFC}</p>
-            <p class='text-black'><span class="fw-bold">Radio : </span>${phonesId.others.Radio}</p>
-            <p class='text-black'><span class="fw-bold">USB : </span>${phonesId.others.USB}</p>
-            <p class='text-black'><span class="fw-bold">WLAN : </span>${phonesId.others.WLAN}</p>
+            <p class='text-black'><span class="fw-bold">Bluetooth : </span>${phonesId?.others?.Bluetooth?  phonesId.others : Bluetooth = "no data"}</p>
+            <p class='text-black'><span class="fw-bold">GPS : </span>${phonesId?.others?.GPS?  phonesId.others.GPS : GPS='no data'}</p>
+            <p class='text-black'><span class="fw-bold">NFC : </span>${phonesId?.others?.NFC?  phonesId.others.NFC : NFC='no data'}</p>
+            <p class='text-black'><span class="fw-bold">Radio : </span>${phonesId?.others?.Radio?  phonesId.others.Radio : Radio='no data'}</p>
+            <p class='text-black'><span class="fw-bold">USB : </span>${phonesId?.others?.USB?  phonesId.others.USB : USB='no data'}</p>
+            <p class='text-black'><span class="fw-bold">WLAN : </span>${phonesId?.others?.WLAN?  phonesId.others.WLAN : WLAN='no data'}</p>
             <p class='text-black'><span class="fw-bold">Release Date : </span>${phonesId.releaseDate ? phonesId.releaseDate : releaseDate="Comming Soon"}
           </div>
         </div>
@@ -151,7 +137,6 @@ const detailsfunction = phonesId => {
     </div>  
       `;
       loadingSpinner('none');
-    }
 
 };
 
